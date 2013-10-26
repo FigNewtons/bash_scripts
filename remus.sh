@@ -6,7 +6,7 @@
 
 EXT=$1
 COUNTER=1
-for file in *$EXT  #Change to any extension
+for file in *.$EXT  #Change to any extension
 do
 	#Removes substring preceding the last dash (-) in string 
 	new=$COUNTER."${file##*-}" 
