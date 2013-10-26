@@ -8,9 +8,23 @@ EXT=$1
 COUNTER=1
 for file in *.$EXT  #Change to any extension
 do
-	#Removes substring preceding the last dash (-) in string 
-	new=$COUNTER."${file##*-}" 
+	if [[ "$file" == *-* ]]
+	then
+		#Removes substring preceding the last dash (-) in string 
+		str="${file##*-}" 
+
+	elif [[ "$file" == [0-9][0-9]* ]]
+	then 
+		#Removes two-digit numbering from file name
+		str=$(echo $file | sed 's/[0-9][0-9]//g')
+	else
+		str="$file"
+	fi
+	
+	#Rename file	
+	new=$COUNTER."$str"
 	mv "$file" "$new"
+
 	let COUNTER=$[$COUNTER + 1]
 done
 
