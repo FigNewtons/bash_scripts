@@ -2,6 +2,9 @@
 
 # Renames music files in a given directory based on extension
 # provided by the user (ex: bash remus.sh mp3)
+
+# Ex: 01.Song.mp3, 01 Band - Song.mp3, etc. ----> 1.Song.mp3
+
 # Make sure to cd inside the target directory before running
 
 EXT=$1
@@ -12,6 +15,11 @@ do
 	then
 		#Removes substring preceding the last dash (-) in string 
 		str="${file##*-}" 
+
+	elif [[ "$file" == *.* ]]
+	then
+		#Removes substring preceding the first dash (.) in string 
+		str="${file#*.}" 
 
 	elif [[ "$file" == [0-9][0-9]* ]]
 	then 
