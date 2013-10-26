@@ -18,7 +18,7 @@ do
 
 	elif [[ "$file" == *.* ]]
 	then
-		#Removes substring preceding the first dash (.) in string 
+		#Removes substring preceding the first period (.) in string 
 		str="${file#*.}" 
 
 	elif [[ "$file" == [0-9][0-9]* ]]
