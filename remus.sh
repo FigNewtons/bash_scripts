@@ -34,10 +34,10 @@ do
 	
 	#Rename file	
 	new=$COUNTER."$str"
-	#mv "$file" "$new"
-	echo "$new"
+	mv "$file" "$new"
+
 	#Create playlist
-	#echo "$new" >> playlist.m3u
+	echo "$new" >> playlist.m3u
 
 	let COUNTER=$[$COUNTER + 1]
 done
