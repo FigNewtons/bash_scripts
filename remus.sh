@@ -7,6 +7,8 @@
 
 # Make sure to cd inside the target directory before running
 
+# Use at your own discretion! 
+
 EXT=$1
 COUNTER=1
 for file in *.$EXT  #Change to any extension
@@ -16,7 +18,8 @@ do
 		#Removes substring preceding the last dash (-) in string 
 		str="${file##*-}" 
 
-	elif [[ "$file" == *.* ]]
+	# Check if occurrence of '.' in file is greater than one (.$EXT)
+	elif [ $(grep -o '\.' <<< $file | grep -c '\.') -gt 1 ]
 	then
 		#Removes substring preceding the first period (.) in string 
 		str="${file#*.}" 
@@ -31,10 +34,10 @@ do
 	
 	#Rename file	
 	new=$COUNTER."$str"
-	mv "$file" "$new"
-
+	#mv "$file" "$new"
+	echo "$new"
 	#Create playlist
-	echo "$new" >> playlist.m3u
+	#echo "$new" >> playlist.m3u
 
 	let COUNTER=$[$COUNTER + 1]
 done
